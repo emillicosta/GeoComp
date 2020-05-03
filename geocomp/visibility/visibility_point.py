@@ -1,21 +1,25 @@
 #!/usr/bin/env python
-"""Algoritmo forca-bruta"""
+"""Algoritmo visibilidade de um ponto"""
 
-from geocomp.common.segment import Segment
-from geocomp.common.point import Point
-from geocomp.common.ray import Ray
-from geocomp.common.vector import Vector
-from geocomp.common.avl import AVL
-from geocomp.common.pontoEvento import PontoEvento
 from geocomp.common import control
 from geocomp.common.guiprim import *
+from geocomp.common.avl import AVL
+from geocomp.common.ray import Ray
+from geocomp.common.point import Point
+from geocomp.common.vector import Vector
+from geocomp.common.segment import Segment
+from geocomp.common.pontoEvento import PontoEvento
+
 import math
 
-
 def VisibilityPoint (l):
-	"Algoritmo forca bruta para encontrar o par de pontos mais proximo"
 	p = l[0]; l = l[1::]
-	l = MergeSort(l,p)
+
+	dist = []
+	for i in range(len(l)):
+		d = distPontoReta(p, l[i])
+		dist.append(d)
+	l = MergeSort(l,dist)
 
 	fila = FilaEvento(l)
 
@@ -63,7 +67,6 @@ def VisibilityPoint (l):
 		#control.sleep ()
 		if ray.intersects(l[i]):
 			root = myTree.insert(root,i, l[i])
-			print('ADD: ', i)
 			#l[i].hilight(color_line = "green")
 		else:
 			l[i].plot()
@@ -83,29 +86,23 @@ def VisibilityPoint (l):
 			iguais.append(fila[i])
 			if froot is None:
 				root = myTree.insert(root, dist, l[dist])
-				print('ADD iguais: ', dist)
 		else:
 			id = control.plot_ray(p.x, p.y, p1, p2, 'white')
 			if len(iguais) !=0:
 				iguais.append(fila[i])
 				if froot is None:
 					root = myTree.insert(root, dist, l[dist])
-					print('ADD iguais: ', dist)
 				minroot = myTree.getMinValueNode(root)
 				if minroot != None:
-					print('menor:',minroot.val)
 					l[minroot.val].hilight(color_line = "yellow")
 				for a in iguais:
 					if a.getEsq() == False:
 						root = myTree.delete(root, a.getIndex())
-						print('DEL iguais: ', a.getIndex())
 
 				minroot = myTree.getMinValueNode(root)
 				if minroot != None:
-					print('menor iniciando:',minroot.val)
 					l[minroot.val].hilight(color_line = "yellow")
 				iguais = []
-				print("__________")
 				control.sleep ()
 				control.plot_delete(id)
 				continue
@@ -114,17 +111,13 @@ def VisibilityPoint (l):
 			
 				root = myTree.insert(root, dist, l[dist])
 				#l[dist].hilight(color_line = "green")
-				print('ADD: ', dist)
 			else:
 				root = myTree.delete(root, dist)
-				print('DEL: ', dist)
 				#l[dist].plot()
 
 			minroot = myTree.getMinValueNode(root)
 			if minroot != None:
-				print('menor:',minroot.val)
 				l[minroot.val].hilight(color_line = "yellow")
-			print("__________")
 			control.sleep ()
 			control.plot_delete(id)
 	return None
@@ -160,33 +153,39 @@ def MergeSort_ang(arr, p):
 			k+=1
 	return arr
 
-def MergeSort(arr,p): 
+def MergeSort(arr, dist): 
 	if len(arr) >1: 
 		mid = len(arr)//2 
 		L = arr[:mid]  
-		R = arr[mid:]  
+		R = arr[mid:]
+		distL = dist[:mid]
+		distR = dist[mid:]  
 
-		MergeSort(L,p)  
-		MergeSort(R,p)  
+		MergeSort(L, distL)  
+		MergeSort(R, distR)  
 
 		i = j = k = 0
 
 		while i < len(L) and j < len(R): 
-			if distPontoReta(p, L[i]) < distPontoReta(p, R[j]): 
+			if distL[i] < distR[j]: 
 				arr[k] = L[i] 
+				dist[k] = distL[i]
 				i+=1
 			else: 
 				arr[k] = R[j] 
+				dist[k] = distR[j]
 				j+=1
 			k+=1
 
 		while i < len(L): 
 			arr[k] = L[i] 
+			dist[k] = distL[i]
 			i+=1
 			k+=1
 
 		while j < len(R): 
-			arr[k] = R[j] 
+			arr[k] = R[j]
+			dist[k] = distR[j] 
 			j+=1
 			k+=1
 	return arr
@@ -235,13 +234,9 @@ def FilaEvento(l):
 
 def distPontoReta(p, seg):
 	p1, p2 = seg.endpoints()
-	d = prim.dist2(p, p1)
-	d1 = prim.dist2(p, p2)
-	if d1 < d:
-		d = d1
+
 	pm = Point((p1.x+p2.x)/2, (p1.y+p2.y)/2)
-	d1 = prim.dist2(p,pm)
-	if d1 < d:
-		d = d1
+	d = prim.dist2(p,pm)
+
 	return (d)
 
