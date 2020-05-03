@@ -14,9 +14,7 @@ import math
 
 def VisibilityPoint (l):
 	"Algoritmo forca bruta para encontrar o par de pontos mais proximo"
-	p = l[0]
-
-	l = l[1::]
+	p = l[0]; l = l[1::]
 	l = MergeSort(l,p)
 
 	fila = FilaEvento(l)
@@ -27,10 +25,18 @@ def VisibilityPoint (l):
 	for f in fila:
 		find = False
 		f.getPoint().plot('red')
+		p2 = f.getSeg().to
+		if p2 == f.getPoint():
+			p2 = f.getSeg().init
 		for i in range(len(seg)):
 			if seg[i] == f.getSeg():
 				find = True
 				f.setEsq(False)
+
+				if (f.getPoint().x >= 0 and f.getPoint().y > 0) \
+				or (f.getPoint().x <= 0 and f.getPoint().y < 0) :
+					f.setEsq(False)
+
 				seg.remove(f.getSeg())
 				break
 		if(find == False):
@@ -39,6 +45,9 @@ def VisibilityPoint (l):
 			if angle(f, p) == 0 and seno(f.getSeg().init, p) < 0:
 				f.setEsq(False)
 				seg.remove(f.getSeg())
+			if (f.getPoint().x >= 0 and f.getPoint().y > 0) \
+			or (f.getPoint().x <= 0 and f.getPoint().y < 0) :
+				f.setEsq(True)
 
 	#Linha de varredura
 	ray = Ray(p, Vector([1, 0]))
@@ -74,11 +83,14 @@ def VisibilityPoint (l):
 			iguais.append(fila[i])
 			if froot is None:
 				root = myTree.insert(root, dist, l[dist])
-				print('ADD: ', dist)
+				print('ADD iguais: ', dist)
 		else:
 			id = control.plot_ray(p.x, p.y, p1, p2, 'white')
 			if len(iguais) !=0:
 				iguais.append(fila[i])
+				if froot is None:
+					root = myTree.insert(root, dist, l[dist])
+					print('ADD iguais: ', dist)
 				minroot = myTree.getMinValueNode(root)
 				if minroot != None:
 					print('menor:',minroot.val)
@@ -93,9 +105,11 @@ def VisibilityPoint (l):
 					print('menor iniciando:',minroot.val)
 					l[minroot.val].hilight(color_line = "yellow")
 				iguais = []
+				print("__________")
 				control.sleep ()
 				control.plot_delete(id)
 				continue
+
 			if froot is None:
 			
 				root = myTree.insert(root, dist, l[dist])
@@ -110,7 +124,7 @@ def VisibilityPoint (l):
 			if minroot != None:
 				print('menor:',minroot.val)
 				l[minroot.val].hilight(color_line = "yellow")
-			
+			print("__________")
 			control.sleep ()
 			control.plot_delete(id)
 	return None
