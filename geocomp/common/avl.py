@@ -187,7 +187,7 @@ class AVL(object):
             return root 
         if root.val == key:
             return root
-        elif root.val < key:
-            return self.getMinValueNode(root.left)
+        elif key < root.val :
+            return self.getNode(root.left, key)
         else:
-            return self.getMinValueNode(root.right)
+            return self.getNode(root.right, key)
