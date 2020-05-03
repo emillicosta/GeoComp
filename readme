@@ -1,0 +1,14 @@
+Autor: Débora Emilli Costa Oliveira
+Nº USP: 11585716
+
+O algoritmo implementado foi o de de divisão e conquista para encontrar o par de pontos mais próximos, versão bonita que vimos na aula.
+
+O código adicionado está no diretório: geocomp/closest/shamos_hoey.py.
+
+Para executar, é preciso abrir o terminal na pasta raiz da plataforma e executar: python3 tkgeocomp.py
+
+Ao executar, é mostrado a divisão dos pontos através de uma linha vertical verde. Ao realizar o cálculo de distância entre dois pontos, os mesmos ficam com a cor amarela e é mostrado o segmento entre eles.
+
+É mostrado duas linhas verticais laranjas sinalizando a faixa pontos que estão a uma distância menor que d = min{dE, dD} da reta vertical x = X[q].
+
+Ao final o par de pontos com menor distância é sinalizado com a cor veremelha e um segmento em azul.
