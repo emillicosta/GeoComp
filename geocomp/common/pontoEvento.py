@@ -1,9 +1,10 @@
 class PontoEvento:
-	def __init__(self, point, seg, esq, index):
+	def __init__(self, point, seg, esq, index, angle):
 		self.point = point
 		self.seg = seg
 		self.esq = esq
 		self.index = index
+		self.angle = angle
 
 	def getPoint(self):
 		return self.point
