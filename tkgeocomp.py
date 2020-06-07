@@ -7,6 +7,7 @@ from geocomp import config
 import geocomp.common.io as io
 import os
 import string
+import sys  # adicionado pela Cris
 
 import geocomp.common.control as control
 
@@ -111,6 +112,11 @@ class App:
         self.filelist.pack (fill=X)
         self.filelist['takefocus'] = 1
         self.filelist.directory = directory
+        # adicionado pela Cris
+        datafilename = sys.argv[-1]  
+        if (datafilename != "tkgeocomp.py"):
+            return datafilename
+        
         for f in files:
             if os.path.isfile (os.path.join (directory, f)):
                 return f

@@ -1,0 +1,39 @@
+Autor: Débora Emilli Costa Oliveira
+Nº USP: 11585716
+
+----------------------------------EP3----------------------------------------------
+O algoritmo implementado foi o par de pontos mais próximo utilizando o algoritmo probabilístico. 
+
+O código adicionado está no diretório: geocomp/closest/randomized.py.
+
+A estrutura de dados utilizada foi um dicionário, pois a busca custa tempo esperado O(1). Mantendo a complexidade do algoritmo.
+
+Os pontos que estão no dicionário estão pintados de azul; o ponto processado é pintado de amarelo.
+
+Ao reconstruir o grid, todos os pontos voltam a serem brancos, e os j-ésimos são re-inseridos no dicionário, ficando um a um azul novamente.
+
+Ao final o par de pontos com menor distância é sinalizado com a cor vermelha.
+
+
+
+----------------------------------EP2----------------------------------------------
+O algoritmo implementado foi o de Segmentos visíveis a partir de um ponto.
+
+O código adicionado está no diretório: geocomp/visibility/visibility_poiny.py.
+
+Ao executar é feito um pre-processamento alinando os segmentos e pontos eventos, Ao iniciar a linha de varredura a partir do ponto, é verificado quais segmentos intersectam a linha. A verificação é demostrado mudando a cor do segmento para pink e os que intersectam são adicionado a AVL e são pintados de azul. Para marcar que o segmento é visto pelo ponto, acor é modificada para amarelo.
+
+
+
+----------------------------------EP1----------------------------------------------
+O algoritmo implementado foi o de divisão e conquista para encontrar o par de pontos mais próximos, versão bonita que vimos na aula.
+
+O código adicionado está no diretório: geocomp/closest/shamos_hoey.py.
+
+Para executar, é preciso abrir o terminal na pasta raiz da plataforma e executar: python3 tkgeocomp.py
+
+Ao executar, é mostrado a divisão dos pontos através de uma linha vertical verde. Ao realizar o cálculo de distância entre dois pontos, os mesmos ficam com a cor amarela e é mostrado o segmento entre eles.
+
+É mostrado duas linhas verticais laranjas sinalizando a faixa pontos que estão a uma distância menor que d = min{dE, dD} da reta vertical x = X[q].
+
+Ao final o par de pontos com menor distância é sinalizado com a cor veremelha e um segmento em azul.
