@@ -13,15 +13,18 @@ Sub-modulos:
 from . import closest
 from . import lineintersections
 from . import visibility
+from . import convex_hulls
 from .common.guicontrol import init_display
 from .common.guicontrol import plot_input
 from .common.guicontrol import run_algorithm
 from .common.prim import get_count
 from .common.prim import reset_count
 
-children = (   ( 'lineintersections',  None, 'Interseção de Todos os  Segs' ),
+children = (   
+				#( 'lineintersections',  None, 'Interseção de Todos os  Segs' ),
                ( 'closest',  None, 'Par Mais Prox' ),
                ( 'visibility',  None, 'Visibilidade de um ponto' ),
+               ( 'convex_hulls',  None, 'Fecho Convexo' ),
 
 	)
 

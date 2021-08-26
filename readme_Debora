@@ -1,6 +1,18 @@
 Autor: Débora Emilli Costa Oliveira
 Nº USP: 11585716
 
+----------------------------------EP4----------------------------------------------
+O algoritmo implementado foi o MergeHull. 
+
+O código adicionado está no diretório: geocomp/convex_hulls/mergehull.py.
+
+A divisão dos pontos é sinalizada pelo segmento verde; 
+O fecho é representado pelos segmentos da cor laranja;
+Ao juntar o fecho da esquerda com o da direita, o fecho da esquerda fica vermelho e o da direita azul;
+Os testes de esquerda e de direita são sinalizados pela cor amarela;
+Os pontos tangentes são sinalizados pela reta da cor ciano.
+
+
 ----------------------------------EP3----------------------------------------------
 O algoritmo implementado foi o par de pontos mais próximo utilizando o algoritmo probabilístico. 
 
