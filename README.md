@@ -38,6 +38,8 @@ para rodar o algoritmo de par de pontos mais próximo em todos os arquivos
 dados/LOOSE_PTS/ptos*.
 
 ----------------------------------EP4----------------------------------------------
+
+
 O algoritmo implementado foi o MergeHull. 
 
 O código adicionado está no diretório: geocomp/convex_hulls/mergehull.py.
@@ -52,6 +54,8 @@ Os pontos tangentes são sinalizados pela reta da cor ciano.
 
 
 ----------------------------------EP3----------------------------------------------
+
+
 O algoritmo implementado foi o par de pontos mais próximo utilizando o algoritmo probabilístico. 
 
 O código adicionado está no diretório: geocomp/closest/randomized.py.
@@ -68,6 +72,8 @@ Ao final o par de pontos com menor distância é sinalizado com a cor vermelha.
 
 
 ----------------------------------EP2----------------------------------------------
+
+
 O algoritmo implementado foi o de Segmentos visíveis a partir de um ponto.
 
 O código adicionado está no diretório: geocomp/visibility/visibility_poiny.py.
@@ -78,6 +84,8 @@ Ao executar é feito um pre-processamento alinando os segmentos e pontos eventos
 
 
 ----------------------------------EP1----------------------------------------------
+
+
 O algoritmo implementado foi o de divisão e conquista para encontrar o par de pontos mais próximos, versão bonita que vimos na aula.
 
 O código adicionado está no diretório: geocomp/closest/shamos_hoey.py.
@@ -92,4 +100,3 @@ Ao executar, é mostrado a divisão dos pontos através de uma linha vertical ve
 Ao final o par de pontos com menor distância é sinalizado com a cor veremelha e um segmento em azul.
 
 ![Alt Text](GIFS/ShamosHoey.gif)
-![alt text](https://media.giphy.com/media/vFKqnCdLPNOKc/giphy.gif)
