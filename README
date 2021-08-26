@@ -1,10 +1,13 @@
+Front-end criado por:
+ - alexis at ime dot usp dot br ( Alexis Sakurai Landgraf, criador
+  original do arcabouço)
+ 
+ - victorsp at ime dot usp dot br (Victor, responsável pela adaptação
+   para python3)
 
-Existem três "front-ends" ({cli,tk,g}geocomp.py). Para rodar qualquer
-um deles, você vai precisar de Python (testado com aa versão 3.5.4,
-mas 3.x.x deve funcionar).  Além disso, tkgeocomp.py precisa do módulo
-padrão de Tk que acompanha a distribuição de Python. O módulo
-ggeocomp.py atualmente não está funcionando, pois o pacote que esse
-módulo usava (gnome-python) não parece ser mais suportado.
+Para rodar o tkgeocomp.py vai precisar de Python (testado com aa versão 
+3.5.4, mas 3.x.x deve funcionar).  Além disso, tkgeocomp.py precisa do 
+módulo padrão de Tk que acompanha a distribuição de Python.
 
 O arquivo geocomp/config.py pode ser alterado para mudar cores, tamanho
 da janela, largura da linha, etc.
@@ -31,53 +34,59 @@ O front-end tkgeocomp.py permite salvar a imagem que está desenhada
 em um determinado instante na tela, bastando para isso apertar o botão
 "imprimir". O formato da imagem criada é .eps (Encapsulated Postscript).
 
-O front-end ggeocomp.py permite dar um zoom em uma determinada área da
-tela - infelizmente esse zoom não é muito útil porque os pontos
-continuam sendo desenhados na mesma proporção.
+para rodar o algoritmo de par de pontos mais próximo em todos os arquivos 
+dados/LOOSE_PTS/ptos*.
 
-O front-end cligeocomp.py pode ser usado para rodar os algoritmos não
-interativamente. Ele pode ser chamado como:
-	cligeocomp geocomp/closest/brute.py dados/LOOSE_PTS/ptos*
-para rodar o algoritmo de par de pontos mais próximo em todos os arquivos dados/LOOSE_PTS/ptos*.
+----------------------------------EP4----------------------------------------------
+O algoritmo implementado foi o MergeHull. 
 
+O código adicionado está no diretório: geocomp/convex_hulls/mergehull.py.
 
-Acrescentando novos algoritmos/problemas
-========================================
-Para acrescentar um novo algoritmo de, por exemplo, par de pontos mais próximo:
-- escreva seu algoritmo no arquivo geocomp/closest/novo_alg.py, numa
-  função Novo_alg
-- edite geocomp/closest/__init__.py colocando uma linha
-	import novo_alg
-  e adicione um item 
-  ('novo_alg', 'Novo_alg', 'um nome para aparecer na interface grafica')
-  à variável children
-
-Para colocar um novo problema:
-- crie um diretório geocomp/novo_problema
-- crie geocomp/novo_problema/__init__.py , no mesmo estilo de
-  geocomp/closest/__init__.py :
-  - uma linha "import foo" para cada arquivo foo.py
-  - uma lista "children" que possui um item 
-  ( 'foo', 'Funcao_de_Foo', 'Nome para a interface grafica')
-    para cada arquivo foo.py em geocomp/closest/
-- edite geocomp/__init__.py e coloque uma linha:
-	import novo_problema
-  e coloque um item
-  ( 'novo_problema', None, 'Um nome para a interface grafica')
-  na variável children
-
-Se o novo problema possuir uma entrada que não seja um conjunto de
-pontos, será necessário alterar, pelo menos geocomp/common/io.py e
-geocomp/common/guicontrol.py (função run_algorithm) para que tudo
-funcione.
+A divisão dos pontos é sinalizada pelo segmento verde; 
+O fecho é representado pelos segmentos da cor laranja;
+Ao juntar o fecho da esquerda com o da direita, o fecho da esquerda fica vermelho e o da direita azul;
+Os testes de esquerda e de direita são sinalizados pela cor amarela;
+Os pontos tangentes são sinalizados pela reta da cor ciano.
+![Alt Text](GIT/Randomized.gif)
 
 
-Dúvidas, contate:
+----------------------------------EP3----------------------------------------------
+O algoritmo implementado foi o par de pontos mais próximo utilizando o algoritmo probabilístico. 
 
- - alexis at ime dot usp dot br ( Alexis Sakurai Landgraf, criador
-  original do arcabouço)
- 
- - victorsp at ime dot usp dot br (Victor, responsável pela adaptação
-   para python3)
+O código adicionado está no diretório: geocomp/closest/randomized.py.
+
+A estrutura de dados utilizada foi um dicionário, pois a busca custa tempo esperado O(1). Mantendo a complexidade do algoritmo.
+
+Os pontos que estão no dicionário estão pintados de azul; o ponto processado é pintado de amarelo.
+
+Ao reconstruir o grid, todos os pontos voltam a serem brancos, e os j-ésimos são re-inseridos no dicionário, ficando um a um azul novamente.
+
+Ao final o par de pontos com menor distância é sinalizado com a cor vermelha.
+![Alt Text](GIT/MergeHull.gif)
 
 
+
+----------------------------------EP2----------------------------------------------
+O algoritmo implementado foi o de Segmentos visíveis a partir de um ponto.
+
+O código adicionado está no diretório: geocomp/visibility/visibility_poiny.py.
+
+Ao executar é feito um pre-processamento alinando os segmentos e pontos eventos, Ao iniciar a linha de varredura a partir do ponto, é verificado quais segmentos intersectam a linha. A verificação é demostrado mudando a cor do segmento para pink e os que intersectam são adicionado a AVL e são pintados de azul. Para marcar que o segmento é visto pelo ponto, acor é modificada para amarelo.
+![Alt Text](GIT/VisibilityPoint.gif)
+
+
+----------------------------------EP1----------------------------------------------
+O algoritmo implementado foi o de divisão e conquista para encontrar o par de pontos mais próximos, versão bonita que vimos na aula.
+
+O código adicionado está no diretório: geocomp/closest/shamos_hoey.py.
+
+Para executar, é preciso abrir o terminal na pasta raiz da plataforma e executar: python3 tkgeocomp.py
+
+Ao executar, é mostrado a divisão dos pontos através de uma linha vertical verde. Ao realizar o cálculo de distância entre dois pontos, os mesmos ficam com a cor amarela e é mostrado o segmento entre eles.
+
+É mostrado duas linhas verticais laranjas sinalizando a faixa pontos que estão a uma distância menor que d = min{dE, dD} da reta vertical x = X[q].
+
+
+Ao final o par de pontos com menor distância é sinalizado com a cor veremelha e um segmento em azul.
+
+![Alt Text](GIT/ShamosHoey.gif)
