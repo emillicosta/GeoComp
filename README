@@ -47,7 +47,7 @@ O fecho é representado pelos segmentos da cor laranja;
 Ao juntar o fecho da esquerda com o da direita, o fecho da esquerda fica vermelho e o da direita azul;
 Os testes de esquerda e de direita são sinalizados pela cor amarela;
 Os pontos tangentes são sinalizados pela reta da cor ciano.
-![Alt Text](GIT/Randomized.gif)
+![Alt Text](GIFS/Randomized.gif)
 
 
 ----------------------------------EP3----------------------------------------------
@@ -62,7 +62,7 @@ Os pontos que estão no dicionário estão pintados de azul; o ponto processado 
 Ao reconstruir o grid, todos os pontos voltam a serem brancos, e os j-ésimos são re-inseridos no dicionário, ficando um a um azul novamente.
 
 Ao final o par de pontos com menor distância é sinalizado com a cor vermelha.
-![Alt Text](GIT/MergeHull.gif)
+![Alt Text](GIFS/MergeHull.gif)
 
 
 
@@ -72,7 +72,7 @@ O algoritmo implementado foi o de Segmentos visíveis a partir de um ponto.
 O código adicionado está no diretório: geocomp/visibility/visibility_poiny.py.
 
 Ao executar é feito um pre-processamento alinando os segmentos e pontos eventos, Ao iniciar a linha de varredura a partir do ponto, é verificado quais segmentos intersectam a linha. A verificação é demostrado mudando a cor do segmento para pink e os que intersectam são adicionado a AVL e são pintados de azul. Para marcar que o segmento é visto pelo ponto, acor é modificada para amarelo.
-![Alt Text](GIT/VisibilityPoint.gif)
+![Alt Text](GIFS/VisibilityPoint.gif)
 
 
 ----------------------------------EP1----------------------------------------------
@@ -89,4 +89,4 @@ Ao executar, é mostrado a divisão dos pontos através de uma linha vertical ve
 
 Ao final o par de pontos com menor distância é sinalizado com a cor veremelha e um segmento em azul.
 
-![Alt Text](GIT/ShamosHoey.gif)
+![Alt Text](GIFS/ShamosHoey.gif)
