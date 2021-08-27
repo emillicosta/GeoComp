@@ -37,7 +37,7 @@ em um determinado instante na tela, bastando para isso apertar o botão
 para rodar o algoritmo de par de pontos mais próximo em todos os arquivos 
 dados/LOOSE_PTS/ptos*.
 
-----------------------------------EP4----------------------------------------------
+## EP4
 
 
 O algoritmo implementado foi o MergeHull. 
@@ -53,7 +53,7 @@ Os pontos tangentes são sinalizados pela reta da cor ciano.
 ![Alt Text](GIFS/MergeHull.gif)
 
 
-----------------------------------EP3----------------------------------------------
+## EP3
 
 
 O algoritmo implementado foi o par de pontos mais próximo utilizando o algoritmo probabilístico. 
@@ -71,8 +71,7 @@ Ao final o par de pontos com menor distância é sinalizado com a cor vermelha.
 ![Alt Text](GIFS/Randomized.gif)
 
 
-----------------------------------EP2----------------------------------------------
-
+## EP2
 
 O algoritmo implementado foi o de Segmentos visíveis a partir de um ponto.
 
@@ -83,8 +82,7 @@ Ao executar é feito um pre-processamento alinando os segmentos e pontos eventos
 ![Alt Text](GIFS/VisibilityPoint.gif)
 
 
-----------------------------------EP1----------------------------------------------
-
+## EP1
 
 O algoritmo implementado foi o de divisão e conquista para encontrar o par de pontos mais próximos, versão bonita que vimos na aula.
 
